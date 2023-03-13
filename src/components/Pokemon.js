@@ -1,26 +1,45 @@
 import React, { useState, useEffect } from "react";
 import PokemonCard from "./PokemonCard";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Pokemon = () => {
-	const [search, setSearch] = useState();
+	const [search, setSearch] = useState("");
 	const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/pikachu");
-	const [pokemon, setPokemon] = useState([]);
 	const [show, setShow] = useState(false);
+	const [pokemon, setPokemon] = useState([]);
 
 	useEffect(() => {
 		fetch(url)
 			.then((res) => res.json())
 			.then((data) => {
 				setPokemon([data]);
-				console.log(data);
 				setShow(true);
+				console.log(data);
+			})
+			.catch(() => {
+				toast.error("Enter correct pokemon name or id!", {
+					position: "bottom-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "dark",
+				});
+				setShow(false);
 			});
 	}, [url]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		setUrl(`https://pokeapi.co/api/v2/pokemon/${search}`);
-		console.log("www");
+		if (search.trim() === "") {
+			toast.error("Please enter a Pokemon name or ID!", {});
+		} else {
+			setUrl(`https://pokeapi.co/api/v2/pokemon/${search}`);
+			setSearch("");
+		}
 	};
 
 	return (
@@ -30,6 +49,7 @@ const Pokemon = () => {
 				<form className="flex flex-row items-center justify-evenly mt-4" onSubmit={handleSubmit}>
 					<input
 						type="search"
+						value={search}
 						placeholder="Enter Pokemon name or id to Search"
 						className="w-[70%] md:w-[80%] text-lg rounded-md text-black pl-2"
 						onChange={(e) => setSearch(e.target.value)}
