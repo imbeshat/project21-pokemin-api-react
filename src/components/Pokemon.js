@@ -3,7 +3,7 @@ import PokemonCard from "./PokemonCard";
 
 const Pokemon = () => {
 	const [search, setSearch] = useState();
-	const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/1");
+	const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/pikachu");
 	const [pokemon, setPokemon] = useState([]);
 	const [show, setShow] = useState(false);
 
@@ -12,6 +12,7 @@ const Pokemon = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				setPokemon([data]);
+				console.log(data);
 				setShow(true);
 			});
 	}, [url]);
