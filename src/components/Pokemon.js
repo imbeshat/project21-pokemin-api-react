@@ -15,7 +15,6 @@ const Pokemon = () => {
 			.then((data) => {
 				setPokemon([data]);
 				setShow(true);
-				console.log(data);
 			})
 			.catch(() => {
 				toast.error("Enter correct pokemon name or id!", {
