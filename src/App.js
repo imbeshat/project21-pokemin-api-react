@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	return (
-		<div className="text-white pb-8 h-screen flex flex-col items-center justify-center">
+		<div className="text-white flex flex-col items-center justify-center lg:h-screen">
 			<Pokemon />
 			<ToastContainer
 				position="bottom-center"

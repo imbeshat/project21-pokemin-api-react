@@ -16,7 +16,7 @@ const PokemonCard = ({ data }) => {
 									</h3>
 								</div>
 								<hr className="w-[80%] my-3" />
-								<div className="w-[60%] flex flex-col md:flex-row items-center justify-between my-4">
+								<div className="w-[80%] flex flex-col md:flex-row items-center justify-around my-4">
 									<img className="w-[180px] md:w-[300px]" src={pokemon.sprites?.other["official-artwork"].front_default} alt={pokemon.name} />
 									<div className="text-left">
 										<h2 className="text-2xl my-3">Pokemon Stats: </h2>
