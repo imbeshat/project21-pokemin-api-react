@@ -10,7 +10,7 @@ const Pokemon = () => {
 	const [pokemon, setPokemon] = useState([]);
 
 	useEffect(() => {
-		fetch(url)
+		fetch(url.toLowerCase())
 			.then((res) => res.json())
 			.then((data) => {
 				setPokemon([data]);
